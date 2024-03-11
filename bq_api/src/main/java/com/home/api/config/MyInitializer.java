@@ -3,6 +3,7 @@ package com.home.api.config;
 import lombok.extern.apachecommons.CommonsLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +13,16 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @EnableAsync
 public class MyInitializer {
-
+    @Autowired
+    private Environment environment;
     @PostConstruct
     public void init() {
         log.info("Application started...");
         //setProxy();
+        if ("dev".equals(environment.getActiveProfiles()[0])) {
+            log.info("Setting proxy for dev environment...");
+            setProxy();
+        }
         printProxy();
     }
 
