@@ -1,0 +1,21 @@
+application:
+  env:
+    name: prod
+
+spring:
+  cloud:
+    gcp:
+      bigquery:
+        datasetName: DS2
+        project-id: jason-hsbc
+
+server:
+  port: 8082
+  error:
+    include-message: always
+    include-binding-errors: always
+
+service:
+  clientid: 912156613264-0ecti69s7mv650490ghoskuqv3c6ofim.apps.googleusercontent.com
+  allow:
+    account: terraform@jason-hsbc.iam.gserviceaccount.com, jason1.pan@maplequad.com
