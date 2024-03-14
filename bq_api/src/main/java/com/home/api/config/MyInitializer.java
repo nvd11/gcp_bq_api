@@ -19,7 +19,7 @@ public class MyInitializer {
     public void init() {
         log.info("Application started...");
         //setProxy();
-        if ("dev".equals(environment.getActiveProfiles()[0])) {
+        if (environment.getActiveProfiles().length > 0 && "dev".equals(environment.getActiveProfiles()[0])) {
             log.info("Setting proxy for dev environment...");
             setProxy();
         }
