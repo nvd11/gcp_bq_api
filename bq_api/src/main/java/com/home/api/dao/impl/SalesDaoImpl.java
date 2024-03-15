@@ -1,7 +1,6 @@
 package com.home.api.dao.impl;
 
 import com.google.cloud.bigquery.BigQuery;
-import com.google.cloud.bigquery.FieldValue;
 import com.google.cloud.bigquery.FieldValueList;
 import com.google.cloud.bigquery.QueryJobConfiguration;
 import com.home.api.dao.SalesDao;
