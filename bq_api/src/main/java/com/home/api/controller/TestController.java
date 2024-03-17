@@ -19,6 +19,7 @@ public class TestController {
 
     @GetMapping("/hello/fail")
     public ResponseEntity<ApiResponse<String>> getSalesDetails() {
+        log.error("/test/hello/fail ... this api will already return 500 error");
         ApiResponse<String> response = new ApiResponse<>();
         response.setReturnCode(-1);
         response.setReturnMsg("this api will already return 500 error");
