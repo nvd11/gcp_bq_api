@@ -15,7 +15,7 @@ public class BQHealthIndicator extends AbstractHealthIndicator {
     @Override
     protected void doHealthCheck(Health.Builder builder) throws Exception {
         if (bigQueryHealthCheck.isBigQueryHealthy()) {
-            int i=1/0;
+            //int i=1/0;
             builder.up();
         } else {
             builder.down();
