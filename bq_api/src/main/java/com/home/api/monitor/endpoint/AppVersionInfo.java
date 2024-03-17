@@ -1,5 +1,6 @@
 package com.home.api.monitor.endpoint;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.info.Info;
@@ -8,6 +9,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class AppVersionInfo implements InfoContributor {
 
     @Autowired
@@ -18,6 +20,7 @@ public class AppVersionInfo implements InfoContributor {
 
     @Override
     public void contribute(Info.Builder builder) {
+        log.info("AppVersionInfo: contribute ...");
         builder.withDetail("app", "Sales API")
                 .withDetail("version", appVersion)
                 .withDetail("description", "This is a simple Spring Boot application to demonstrate the use of BigQuery in GCP.");
