@@ -51,7 +51,7 @@ public class K8sDaoImpl implements K8sDao {
 
         try {
             InsertAllResponse response = bigQuery.insertAll(insertAllRequest);
-            if (response.hasErrors()) {
+            if (null != response && response.hasErrors()) {
                 log.error("Error in insertPodLog...{}", response.getInsertErrors());
                 throw new Exception("Error in insertPodLog...");
             }
