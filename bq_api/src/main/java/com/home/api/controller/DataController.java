@@ -35,7 +35,6 @@ public class DataController {
             response.setReturnMsg("Error in fetching sales details");
             return ResponseEntity.status(500).body(response);
         }
-
     }
 
 
