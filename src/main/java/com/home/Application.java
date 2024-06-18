@@ -1,16 +1,19 @@
 package com.home;
 
+import com.home.api.config.FeignConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:query.properties")
 @Slf4j
+@EnableFeignClients(defaultConfiguration = FeignConfiguration.class)
 public class Application {
 
     public static void main(String[] args) {

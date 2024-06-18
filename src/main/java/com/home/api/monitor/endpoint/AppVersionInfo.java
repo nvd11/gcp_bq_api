@@ -12,17 +12,21 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class AppVersionInfo implements InfoContributor {
 
-    @Autowired
-    private Environment environment;
-
     @Value("${pom.version}") // https://stackoverflow.com/questions/3697449/retrieve-version-from-maven-pom-xml-in-code
     private String appVersion;
+
+    @Autowired
+    private String hostname;
 
     @Override
     public void contribute(Info.Builder builder) {
         log.info("AppVersionInfo: contribute ...");
         builder.withDetail("app", "Sales API")
                 .withDetail("version", appVersion)
+                .withDetail("hostname",hostname)
                 .withDetail("description", "This is a simple Spring Boot application to demonstrate the use of BigQuery in GCP.");
     }
+
+
+
 }

@@ -1,9 +1,10 @@
 application:
   env:
-    name: prod
+    name: dev
 
 pom:
   version: @project.version@
+
 
 spring:
   cloud:
@@ -13,16 +14,12 @@ spring:
         project-id: jason-hsbc
 
 server:
-  port: 8080
-  error:
-    include-message: always
-    include-binding-errors: always
+  port: 8081
 
 service:
   clientid: 912156613264-0ecti69s7mv650490ghoskuqv3c6ofim.apps.googleusercontent.com
   allow:
     account: terraform@jason-hsbc.iam.gserviceaccount.com, jason1.pan@maplequad.com
-
 
 management:
   endpoints:
@@ -34,3 +31,17 @@ management:
   endpoint:
     health:
       show-details: always
+
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200 # for all
+    max-connections-per-route: 50 # for each url
+    connection-timeout: 3000
+
+logging:
+  level:
+    com.home.api: DEBUG
+
+hostIp:
+  cloud-user: 127.0.0.1:8080
