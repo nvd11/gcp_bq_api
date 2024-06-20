@@ -1,6 +1,7 @@
 package com.home.api.dao.impl;
 
 import com.google.cloud.bigquery.BigQuery;
+import com.google.cloud.bigquery.BigQueryOptions;
 import com.google.cloud.bigquery.InsertAllRequest;
 import com.google.cloud.bigquery.InsertAllResponse;
 import com.home.api.dao.K8sDao;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class K8sDaoImpl implements K8sDao {
-    @Autowired
+   // @Autowired
     private BigQuery bigQuery;
 
     @Autowired
@@ -34,6 +35,8 @@ public class K8sDaoImpl implements K8sDao {
 
     @Override
     public void insertPodLog(String podName, String nameSpace, String podVersion) throws Exception {
+        bigQuery = BigQueryOptions.getDefaultInstance().getService();
+
         log.info("PodName: " + podName + " Namespace: " + nameSpace + " PodVersion: " + podVersion);
         log.info("Inserting pod log into BigQuery table: {}.{}", k8sDataSet, podLogTable);
 
