@@ -10,5 +10,8 @@ COPY target/*.jar app.jar
 # 暴露 8080 端口
 EXPOSE 8080
 
-# 启动 Spring Boot 应用，并指定容器内部的端口为 8080
-CMD ["java", "-jar", "-Dserver.port=8080", "app.jar"]
+# 定义环境变量，默认为 dev
+ENV APP_ENVIRONMENT=dev
+
+# 设置启动命令
+CMD java -jar -Dserver.port=8080 -Dspring.config.name=application-${APP_ENVIRONMENT} app.jar
