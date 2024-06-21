@@ -47,4 +47,4 @@ logging:
     com.home.api: DEBUG
 
 hostIp:
-  cloud-user: 192.168.0.51:8080
+  cloud-user: 192.168.0.51:8081
