@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import com.google.cloud.bigquery.BigQueryOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
 @Repository
 public class SalesDaoImpl implements SalesDao {
 
-    //@Autowired
+    @Autowired
     private BigQuery bigquery;
 
     @Value("${FullSales}")
@@ -26,13 +25,6 @@ public class SalesDaoImpl implements SalesDao {
 
     @Override
     public List<SalesDetailsDao> getSalesDetails() throws Exception {
-
-
-        bigquery = BigQueryOptions.getDefaultInstance().getService();
-
-
-
-
         List<SalesDetailsDao> list = new ArrayList<>();
         try {
             log.info("BigQuery instance created..");

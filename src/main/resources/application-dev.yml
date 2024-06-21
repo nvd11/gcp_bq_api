@@ -3,7 +3,7 @@ application:
     name: dev
 
 pom:
-  version: dummyversion
+  version: @project.version@
 
 
 spring:
