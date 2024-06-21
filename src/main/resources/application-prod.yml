@@ -1,0 +1,50 @@
+application:
+  env:
+    name: prod
+
+pom:
+  version: @project.version@
+
+spring:
+  cloud:
+    gcp:
+      bigquery:
+        datasetName: DS2
+        project-id: jason-hsbc
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+service:
+  clientid: 912156613264-0ecti69s7mv650490ghoskuqv3c6ofim.apps.googleusercontent.com
+  allow:
+    account: terraform@jason-hsbc.iam.gserviceaccount.com, jason1.pan@maplequad.com
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info, health, loggers, env"
+      base-path: /actuator
+
+  endpoint:
+    health:
+      show-details: always
+
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200 # for all
+    max-connections-per-route: 50 # for each url
+    connection-timeout: 3000
+
+logging:
+  level:
+    com.home.api: DEBUG
+
+hostIp:
+  cloud-user: 192.168.0.51:8080

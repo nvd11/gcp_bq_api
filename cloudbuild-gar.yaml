@@ -1,0 +1,37 @@
+steps:
+  - id: run maven install
+    name: maven:3.9.6-sapmachine-17 # https://hub.docker.com/_/maven
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        whoami
+        set -x
+        pwd
+        mvn install
+        cat pom.xml | grep -m 1 "<version>" | sed -e 's/.*<version>\([^<]*\)<\/version>.*/\1/' > /workspace/version.txt
+        echo "Version: $(cat /workspace/version.txt)"
+
+
+  - id: build and push docker image
+    name: 'gcr.io/cloud-builders/docker'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        set -x
+        echo "Building docker image with tag: $(cat /workspace/version.txt)"
+        docker build -t $_GAR_BASE/$PROJECT_ID/$_DOCKER_REPO_NAME/${_APP_NAME}:$(cat /workspace/version.txt) .
+        docker push $_GAR_BASE/$PROJECT_ID/$_DOCKER_REPO_NAME/${_APP_NAME}:$(cat /workspace/version.txt)
+
+
+logsBucket: gs://jason-hsbc_cloudbuild/logs/
+options: # https://cloud.google.com/cloud-build/docs/build-config#options
+  logging: GCS_ONLY # or CLOUD_LOGGING_ONLY https://cloud.google.com/cloud-build/docs/build-config#logging
+
+
+
+substitutions:
+  _DOCKER_REPO_NAME: my-docker-repo
+  _APP_NAME: bq-api-service
+  _GAR_BASE: europe-west2-docker.pkg.dev
