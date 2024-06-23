@@ -1,5 +1,5 @@
 # 使用基础镜像，包含 Oracle JDK 8
-FROM openjdk:11
+FROM openjdk:17
 
 # 设置工作目录
 WORKDIR /app
