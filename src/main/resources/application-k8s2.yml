@@ -1,6 +1,8 @@
+# it's for to test the k8s erternalName service
+
 application:
   env:
-    name: k8s
+    name: k8s2
 
 pom:
   version: @project.version@
@@ -47,4 +49,4 @@ logging:
     com.home.api: DEBUG
 
 hostIp:
-  cloud-user: clusterip-cloud-user:8080
+  cloud-user: externalname-cloud-user:8080
